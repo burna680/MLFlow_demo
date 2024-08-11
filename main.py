@@ -21,10 +21,10 @@ def main():
     experiment_id = create_mlflow_experiment(
         experiment_name="Random Forest Classifier experiment",
         artifact_location="artifacts",
-        tags={"status": "dev", "version": "1.0.0"},
+        tags={"status": "dev", "version": "1.0.1"},
     )
-    experiment = get_mlflow_experiment(run_name="Pipeline Implementation", experiment_name="Random Forest Classifier experiment")
-    with mlflow.start_run(experiment_id=experiment.experiment_id):
+    experiment = get_mlflow_experiment(experiment_name="Random Forest Classifier experiment")
+    with mlflow.start_run(run_name="Random Forest re-training after Feature Engineering",experiment_id=experiment.experiment_id) as run:
         # Enable autologging
         mlflow.tensorflow.autolog()
         
@@ -54,6 +54,9 @@ def main():
         # Data Preparation
         X_train, X_test, y_train, y_test = prepare_data(X, y)
 
+        # Retraining the model with only important features obtained from EDA
+        X_train = X_train.drop(['doors'], axis=1)
+        X_test = X_test.drop(['doors'], axis=1)
         # Training
         clf = train_model(X_train, y_train)
 
