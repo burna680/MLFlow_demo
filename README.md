@@ -63,7 +63,13 @@ Run the main script to execute the entire pipeline:
 python main.py
 ```
 
-This will perform all steps of the pipeline, from data gathering to model training. Outputs, logs, and saved models will be stored in the appropriate directories under `data/`, `model/`, and `artifacts/`.
+This will perform all steps of the pipeline, from data gathering to model training. Outputs, logs, and saved models will be stored in the appropriate directories under `model/`, and `artifacts/`.
+
+### Start the model server
+To use the mlflow model, use the serve command to start the model server. The command depends on your available ports in your local machine and the specific model run you want to serve:
+```bash
+mlflow model serve --model-uri <model_uri> --port=<available_port> --no-conda
+```
 
 ### Exploring the Project
 
