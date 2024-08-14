@@ -1,7 +1,7 @@
 # MLFlow_demo
 
 # MLOps Pipeline Project
-
+![](mlflow-workshop.png)
 ## Overview
 
 This project implements a complete MLOps pipeline for a machine learning scikit-learn model using Python. The pipeline includes the following steps:
